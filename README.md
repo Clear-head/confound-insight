@@ -1,4 +1,4 @@
-# medchem-pipeline
+# confound-insight
 
 의약품 제품명 기반 주성분 정규화 및  
 화합물 구조·물성 분석 백엔드 파이프라인  
@@ -6,7 +6,7 @@
 
 ---
 
-## 프로젝트 개요
+## 📋 프로젝트 개요
 
 `medchem-pipeline`은 **의약품 제품명**을 입력받아  
 해당 제품의 **주성분(화합물)**을 정규화하고,  
@@ -19,7 +19,7 @@
 
 ---
 
-## 프로젝트 목적
+## 🎯 프로젝트 목적
 
 - 실제 사용자 입력(제품명)과 화학 데이터베이스 간의 **식별자 불일치 문제 해결**
 - 제약·화학 도메인 데이터를 활용한 **백엔드 데이터 파이프라인 설계 및 구현**
@@ -28,7 +28,7 @@
 
 ---
 
-## 주요 기능
+## 🔑 주요 기능
 
 ### 1. 의약품 제품명 정규화
 - 사용자 입력 의약품 제품명을 **주성분(화합물) 목록**으로 변환
@@ -53,7 +53,7 @@
 
 ---
 
-## 시스템 아키텍처
+## 🏗️ 시스템 아키텍처
 
 1. 의약품 제품명 입력
 2. 제품명 → 주성분 목록 정규화
@@ -84,7 +84,7 @@
 
 ---
 
-## 데이터 출처
+## 📦 데이터 출처
 
 - **식품의약품안전처 의약품 제품 허가 정보(OpenAPI)**
   - 의약품 제품명
@@ -100,19 +100,40 @@
 
 ---
 
-## API 구성
+## 🔌 API 구성
 
 - 
 
 ---
 
-## Airflow 워크플로우
+## 🔄 Airflow 워크플로우
 
 - `prefetch_popular_ingredients_daily`
   - 자주 조회되는 주성분의 PubChem 데이터 및 구조 분석 결과 사전 계산
 
 - `data_quality_checks_daily`
   - 데이터 누락 여부, 최신성, 처리 오류 점검
+
+---
+
+## 🛠️ 기술 스택
+
+### 백엔드 API
+- ![Django](https://img.shields.io/badge/Django-4.x-092E20?logo=django&logoColor=white)
+
+### 데이터 파이프라인
+- ![Airflow](https://img.shields.io/badge/Apache%20Airflow-2.x-017CEE?logo=apacheairflow&logoColor=white)
+
+### 화학 데이터 처리
+- ![RDKit](https://img.shields.io/badge/RDKit-Cheminformatics-4CAF50)
+- ![PubChem](https://img.shields.io/badge/PubChem-API-0099CC)
+
+### 데이터 저장소
+- ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15+-4169E1?logo=postgresql&logoColor=white)
+- ![Redis](https://img.shields.io/badge/Redis-Cache-DC382D?logo=redis&logoColor=white)
+
+### 개발 환경
+- ![Python](https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&logoColor=white)
 
 ---
 
