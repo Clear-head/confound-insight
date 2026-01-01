@@ -1,24 +1,27 @@
 import os
+import sys
 from pathlib import Path
 import environ
 
-# 1. Build paths
-# api/config/settings.py 기준에서 프로젝트 루트(/app)까지 가기 위해 parent를 3번 호출
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# 2. Initialize environment variables
+if str(BASE_DIR) not in sys.path:
+    sys.path.insert(0, str(BASE_DIR))
+
+if str(BASE_DIR / 'api') not in sys.path:
+    sys.path.insert(0, str(BASE_DIR / 'api'))
+
+sys.path.insert(0, str(BASE_DIR / 'api'))
+
 env = environ.Env(
     DEBUG=(bool, False)
 )
-# .env 파일 읽기
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
-# 3. Security settings (From .env)
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 DEBUG = env('DJANGO_DEBUG')
 ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS', default=['localhost', '127.0.0.1'])
 
-# 4. Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -26,19 +29,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # Third party apps
+
     'rest_framework',
     'corsheaders',
-    
-    # Local apps
-    'app.product',
-    'app.compound',
-    'app.analysis',
+    'apps.products',
+    'apps.compounds',
+    'apps.analysis',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', # CORS 추가
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -67,7 +67,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# 5. Database (PostgreSQL with psycopg 3)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -91,7 +90,10 @@ TIME_ZONE = 'Asia/Seoul'
 USE_I18N = True
 USE_TZ = True
 
-# 8. Static files
-STATIC_URL = '../../frontend/'
-STATIC_ROOT = BASE_DIR / 'static/'
+STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [
+    BASE_DIR / 'frontend' / 'static',
+]
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

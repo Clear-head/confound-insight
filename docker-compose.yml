@@ -26,16 +26,16 @@ services:
 
     command: python api/manage.py runserver 0.0.0.0:8000
     volumes:
-      - .:/app
-      - /app/.venv
-    working_dir: /app
+      - .:/apps
+      - /apps/.venv
+    working_dir: /apps
     ports:
       - "8000:8000"
     env_file:
       - .env
     environment:
-      - PATH=/app/.venv/bin:$PATH
-      - PYTHONPATH=/app
+      - PATH=/apps/.venv/bin:$PATH
+      - PYTHONPATH=/apps
       - PYTHONDONTWRITEBYTECODE=1
       - PYTHONUNBUFFERED=1
     depends_on:
