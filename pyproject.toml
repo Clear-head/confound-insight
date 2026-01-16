@@ -13,5 +13,4 @@ dependencies = [
     "psycopg[binary]>=3.3.2",
     "rdkit>=2025.9.3",
     "redis>=7.1.0",
-    "python-dotenv (>=1.2.1,<2.0.0)",
 ]
