@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter
 
-from apps.products.views import ProductViewSet, ProductIngredientViewSet
+from .views import ProductViewSet, ProductIngredientViewSet
 
 router = DefaultRouter()
 router.register('products', ProductViewSet, basename='products')

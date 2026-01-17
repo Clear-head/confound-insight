@@ -3,8 +3,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.db.models import Q, Count, Prefetch
 
-from apps.products.models import Product, ProductIngredient
-from apps.products.serializers import (
+from .models import Product, ProductIngredient
+from .serializers import (
     ProductListSerializer,
     ProductDetailSerializer,
     ProductCreateSerializer,
