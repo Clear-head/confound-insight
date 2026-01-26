@@ -10,8 +10,24 @@ dependencies = [
     "django-cors-headers>=4.9.0",
     "django-environ>=0.12.0",
     "djangorestframework>=3.16.1",
+    "djangorestframework-stubs>=3.16.7",
     "drf-spectacular>=0.29.0",
     "psycopg[binary]>=3.3.2",
     "rdkit>=2025.9.3",
     "redis>=7.1.0",
+]
+
+[tool.mypy]
+plugins = [
+    "mypy_django_plugin.main",
+    "mypy_drf_plugin.main",
+]
+
+[tool.django-stubs]
+django_settings_module = "your_project_name.settings"
+
+[dependency-groups]
+dev = [
+    "django-stubs>=5.2.9",
+    "djangorestframework-stubs>=3.16.7",
 ]
